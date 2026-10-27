@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dc-healthcheck-pro"
+version = "0.1.0"
+description = "Read-only Linux server diagnostics with portable demonstration reports"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "devmeto5"}]
+dependencies = []
+
+[project.scripts]
+dc-healthcheck = "dc_healthcheck.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["dc_healthcheck*"]

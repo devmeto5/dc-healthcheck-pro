@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "tool_version": "0.1.0",
+  "mode": "DEMO",
+  "generated_at": "2026-10-27T14:03:32.287797+00:00",
+  "status": "CRITICAL",
+  "checks": [
+    {
+      "check": "load",
+      "status": "OK",
+      "summary": "0.35 load/CPU; warning >= 1.0, critical >= 2.0",
+      "recommendation": "No action required.",
+      "value": 0.35,
+      "unit": "load/CPU"
+    },
+    {
+      "check": "memory",
+      "status": "OK",
+      "summary": "54.00 % used; warning >= 80, critical >= 95",
+      "recommendation": "No action required.",
+      "value": 54.0,
+      "unit": "% used"
+    },
+    {
+      "check": "disk:/demo-data",
+      "status": "CRITICAL",
+      "summary": "93.00 % used; warning >= 80, critical >= 90",
+      "recommendation": "Review capacity.",
+      "value": 93.0,
+      "unit": "% used"
+    },
+    {
+      "check": "interface:demo0",
+      "status": "WARNING",
+      "summary": "Synthetic link is down",
+      "recommendation": "Inspect cabling.",
+      "value": null,
+      "unit": null
+    },
+    {
+      "check": "service:demo.service",
+      "status": "OK",
+      "summary": "Synthetic service is active",
+      "recommendation": "No action required.",
+      "value": null,
+      "unit": null
+    }
+  ]
+}

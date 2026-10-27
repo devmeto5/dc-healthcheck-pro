@@ -1,0 +1,9 @@
+# Inclusive warning and critical thresholds.
+load = [1.0, 2.0]
+memory = [80, 95]
+disk = [80, 90]
+paths = ["/"]
+# Opt in to the specific links and services expected on your server.
+interfaces = []
+services = []
+timeout = 5

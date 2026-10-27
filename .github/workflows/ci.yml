@@ -1,0 +1,33 @@
+name: Tests
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.12', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install package
+        run: python -m pip install .
+      - name: Unit and CLI tests
+        run: python -m unittest discover -s tests -v
+      - name: Verify installed command
+        run: dc-healthcheck --version
+      - name: Linux live smoke test
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set +e
+          dc-healthcheck --format json > live-report.json
+          code=$?
+          set -e
+          test "$code" -le 3
+          python -c "import json; d=json.load(open('live-report.json')); assert d['mode']=='LIVE'; assert len(d['checks'])==3; assert all(c['status']!='UNKNOWN' for c in d['checks']), d"
